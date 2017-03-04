@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         rawData = new LineGraphSeries<>();
         graphView = (GraphView) findViewById(R.id.rawGraph);
         graphView.getViewport().setYAxisBoundsManual(true);
-        graphView.getViewport().setMinY(220);
-        graphView.getViewport().setMaxY(260);
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMinX(1);
         graphView.getViewport().setMaxX(80);
@@ -155,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    graphView.getViewport().setMinY(redChannel - 5);
+                    graphView.getViewport().setMaxY(redChannel + 5);
                     rawData.appendData(new DataPoint(dataPoints++, redChannel), true, 1000);
                 }
             });
